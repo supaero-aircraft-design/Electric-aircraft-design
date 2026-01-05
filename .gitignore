@@ -63,6 +63,7 @@ docs/_build/*
 cover/*
 .idea/*
 MANIFEST
+*.whl
 
 # Per-project virtualenvs
 .venv*/
