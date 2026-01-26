@@ -1,0 +1,68 @@
+title: Powertrain file for the Noctule H2X2
+
+power_train_components:
+  propeller_1:
+    id: fastga_he.pt_component.propeller
+    position: in_the_nose  # "on_the_wing", "in_the_nose"
+  motor_1:
+    id: fastga_he.pt_component.pmsm
+    position: in_the_nose  # "on_the_wing", "in_the_nose"
+  inverter_1:
+    id: fastga_he.pt_component.inverter
+    position: in_the_front  # "inside_the_wing", "in_the_front", "in_the_back"
+  dc_aux_load_1:
+    id: fastga_he.pt_component.dc_load
+    position: in_the_back
+  dc_bus_1:
+    id: fastga_he.pt_component.dc_bus
+    options:
+      number_of_inputs: 1
+      number_of_outputs: 2
+    position: in_the_front  # "inside_the_wing", "in_the_front", "in_the_back"
+  dc_dc_converter_1:
+    id: fastga_he.pt_component.dc_dc_converter
+    position: in_the_front  # "inside_the_wing", "in_the_front", "in_the_back"
+  pemfc_stack_1:
+    id: fastga_he.pt_component.pemfc_stack
+    position: in_the_front  # "inside_the_wing", "in_the_front", "in_the_back"
+    options:
+      model_fidelity: analytical # "empirical" or "analytical"
+  h2_fuel_system_1:
+    id: fastga_he.pt_component.h2_fuel_system
+    options:
+      number_of_tanks: 1
+      number_of_power_sources: 1
+      wing_related: False
+      compact: False
+    position: in_the_middle
+  gaseous_hydrogen_tank_1:
+    id: fastga_he.pt_component.gaseous_hydrogen_tank
+    position: in_the_back
+
+component_connections:
+  - source: propeller_1
+    target: motor_1
+
+  - source: motor_1
+    target: inverter_1
+
+  - source: inverter_1
+    target: [dc_bus_1, 1]
+
+  - source: dc_aux_load_1
+    target: [ dc_bus_1, 2 ]
+
+  - source: [dc_bus_1, 1]
+    target: dc_dc_converter_1
+
+  - source: dc_dc_converter_1
+    target: pemfc_stack_1
+
+  - source: pemfc_stack_1
+    target: [h2_fuel_system_1, 1]
+
+  - source: [h2_fuel_system_1, 1]
+    target: gaseous_hydrogen_tank_1
+
+
+watcher_file_path: ../results/noctule_h2x2_propulsion_data.csv
