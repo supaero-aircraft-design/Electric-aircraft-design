@@ -21,6 +21,11 @@ Then, install the required dependencies:
 pip install fast_oad_cs23_he-0.0.1-py3-none-any.whl
 ```
 
+The framework this course uses is currently incompatible with version of numpy higher than 2.3.5. To ensure that the correct version is installed run the following:
+```{.bash}
+pip install numpy==2.3.5
+```
+
 You can now use jupyter lab to proceed with the seminar by running `jupyter lab` in your command prompt.
 
 --------
