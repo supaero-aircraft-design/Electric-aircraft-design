@@ -10,13 +10,16 @@ This course requires Python 3.10 or 3.11.
 To install the course on your personal laptop or on a school computer, first create a directory where all the files will be located. Then, download the wheel file (fast_oad_cs23_he-0.0.1-py3-none-any.whl) from the LMS and put it in the current directory. 
 Open a Anaconda Prompt terminal and `cd` to the recently downloaded file.
 You can then create a new conda environment by running:
-
 ```{.bash}
 conda create -n electric-aircraft-design python=3.11
+```
+
+You can now set it as the active environment by running: 
+```{.bash}
 conda activate electric-aircraft-design
 ```
 
-Then, install the required dependencies:
+Then, install the required dependencies using the Wheel you will find on the LMS:
 ```{.bash}
 pip install fast_oad_cs23_he-0.0.1-py3-none-any.whl
 ```
